@@ -7,34 +7,16 @@ function App() {
     email: ""
   });
 
-  function handleClick(event){
-const {name, value} = event.target
-setContact(prevValue=>{
-  if(name==='fName'){
-    return {
-    fName: value,
-    lName: prevValue.lName,
-    email: prevValue.email
-    }
-  }else if(name==='lName'){
-    return {
-      fName:  prevValue.fName,
-      lName:value,
-      email: prevValue.email
-      }
-  }else if(name==='email')
-  {
-    return {
-      fName:  prevValue.fName,
-      lName:prevValue.lName,
-      email: value
-      }
-  }
-  
-})
-console.log(name)
-console.log(value)
-
+  function handleClick(event) {
+    const { name, value } = event.target;
+    setContact(prevValue => {
+      return {
+        ...prevValue,
+        [name]: value
+      };
+    });
+    console.log(name);
+    console.log(value);
   }
   return (
     <div className="container">
@@ -44,7 +26,7 @@ console.log(value)
       <p>{contact.email}</p>
       <form>
         <input onChange={handleClick} name="fName" placeholder="First Name" />
-        <input  onChange={handleClick} name="lName" placeholder="Last Name" />
+        <input onChange={handleClick} name="lName" placeholder="Last Name" />
         <input onChange={handleClick} name="email" placeholder="Email" />
         <button>Submit</button>
       </form>
